@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smiley Face Clustering</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script id="MathJax-script" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -90,28 +91,41 @@
     <h3>Steps and Math Involved</h3>
     <h4>Initialization:</h4>
         Choose k initial centroids (mean points) for the clusters. This can be done randomly or by using more sophisticated methods to help improve convergence and results.
+        (In some portion we can start with random clusters as well, the results should be almost identical)
     <h4>Assignment Step:</h4>
         Assign each data point xi to the nearest centroid. The "nearest" is usually determined by the Euclidean distance, though other distances can be used depending on the context.
-        The Euclidean distance between two points xi and yi in a plane is calculated as:
+        The Euclidean distance between two points \(x\) and \(y\) in a plane is calculated as: \(d(x,y) = ||x - y||\). If \(x=(x_1,x_2)\) and \(y=(y_1,y_2)\) then 
+        \(d(x,y) = \sqrt{(x_1-y_1)^2+(x_2-y_2)^2}\).
         In multidimensional space, this extends to:
-        Update Step:
+        Update Step: \(d(\bar x, \bar y) = \sqrt{\sum_{i=1}^n(x_i-y_i)^2}\) where \(\bar x =(x_1,\cdots, x_n)\).
         
         After all points have been assigned to clusters, recalculate the centroids of each cluster as the mean of all points in the cluster.
-        The new centroid of a cluster  is calculated as:
+        The new centroid of a cluster is calculated as: \(c_j:=\text{centriod}(x_j)=\frac 1{|S_j|} \sum_{x_i \in S_j} x_i \)
         
-        Here,  represents the set of all points assigned to cluster 
-        is the number of points in 
+        Here, \(S_j\) represents the set of all points assigned to cluster \(j\) and \(|S_j|\) is the no of points in \(S_j\).
+
     <h4>Iteration:</h4>
         
         Repeat the assignment and update steps until the centroids no longer change significantly, indicating that the algorithm has converged, or until a specified number of iterations has been reached.
         Objective Function
-        K-means aims to minimize the within-cluster sum of squares (WCSS), which is the sum of squared distances between each point and its centroid within a cluster. The objective function, also known as the cost function, to be minimized is:
  
+    <h4>Objective Function:</h4>
+        K-means aims to minimize the within-cluster sum of squares (WCSS), which is the sum of squared distances between each point and its centroid within a cluster. The objective function, also known as the cost function, to be minimized is:
+        \(J=\sum_{j=1}^k\sum_{x_i \in S_j}||x_i-c_j||^2\).
+        
     <h4>Challenges and Considerations</h4>
-        Choosing k: Determining the optimal number of clusters (k) is a critical step and often not straightforward. Methods like the "elbow method" or the "silhouette score" can help in choosing k.
+        Choosing k: Determining the optimal number of clusters \(k\) is a critical step and often not straightforward. Methods like the "elbow method" or the "silhouette score" can help in choosing k.
         Sensitivity to Initial Centroids: The final clusters can be significantly influenced by the initial choice of centroids. Multiple runs with different initializations or using methods like k-means++ can mitigate this issue.
         Convergence to Local Minima: K-means may converge to a local minimum of the cost function, which may not be the global minimum. Again, multiple runs and comparisons can help find better solutions.
         The K-means algorithm is a powerful tool for exploratory data analysis and pattern recognition, with applications ranging from image compression to market segmentation. Its simplicity and efficiency make it widely used, although it is essential to understand its limitations and the underlying mathematical principles to apply it effectively.</p>
+
+    <h4>Reference</h4>
+        <ul>
+            <li>I want to thank my wife first as she gave me this idea of making some interactive notes. She saw it in some other portfolios of quant people. This is my first writing in html and Java. </li>
+            <li>Being that said ChatGPT and Google made my life easier by telling me the syntax of html and Java.</li>
+        </ul>
+
+        Thanks a lot to all of you for reading this.
 </div>
 
 <div class="footer">
@@ -202,3 +216,4 @@
 
 </body>
 </html>
+
